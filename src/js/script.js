@@ -59,29 +59,63 @@
       thisProduct.id = id;
       thisProduct.data = data;
       thisProduct.renderInMenu();
-      console.log('new Product:', thisProduct);
+      thisProduct.initAccordion();
+      //console.log('new Product:', thisProduct);
     }
     renderInMenu(){
       const thisProduct = this;
 
       /* geterate HTML of singlw product */
       const generatedHTML = templates.menuProduct(thisProduct.data);
-      console.log(generatedHTML);
+      //console.log(generatedHTML);
       /* create DOM element based on product code */
       thisProduct.element = utils.createDOMFromHTML(generatedHTML);
       /* find menu cntainer */
       const menuContainer = document.querySelector(select.containerOf.menu);
       /* add created DOM element to menu container */
       menuContainer.appendChild(thisProduct.element);
+    }
+
+    initAccordion(){
+      const thisProduct = this;
+      /* [DONE]find the clickable trigger (the element that should react to clicking) */
+      const trigger = thisProduct.element.querySelector(select.menuProduct.clickable); //stala z elementem clickable
+      //console.log(trigger); headery...
+      /* [DONE]START: click event listener to trigger */
+      trigger.addEventListener ('click', function() { //dodajemy event listener do elementów w stalej trigger
+        /* [DONE]prevent default action for event */
+        event.preventDefault(); //czemu to dodajemy, skoro w headerze nie ma linkow i buttonow?
+        /* [DONE]toggle active class on element of thisProduct */
+        thisProduct.element.classList.add('active'); // dodaje klase active/ lub toggle?
+        /* [DONE]find all active products */
+        const activeAll = document.querySelectorAll('.active'); //zapisuje wszystkie elementy z klasa active do consta
+        //console.log(activeAll);
+        /* [DONE]START LOOP: for each active product */
+        for (let activeSingle of activeAll) { //iteruje po arrayu z wszystkich produktów z klasą active
+        /* [DONE]START: if the active product isn't the element of thisProduct */
+        //console.log(activeSingle);
+          if (activeSingle !== thisProduct.element) { // funkcja if sprawdzajaca czy element z acive nie nalezy do kliknietego headera...
+          /* [DONE]remove class active for the active product */
+            //console.log(activeSingle);
+            activeSingle.classList.toggle('active'); //przełącza z klasy active / add nieco lepsze
+            /* [DONE]END: if the active product isn't the element of thisProduct */
+          } //koniec funkcji if
+          /* [DONE] END LOOP: for each active product */
+        } // koniec funkcji for iterujacej elementy tablicy
+        /* [DONE] END: click event listener to trigger */
+      }// koniec funkcji anonimowej
+    ); //zamkniecie nawiasu argumentów listenera
+
 
     }
+
   }
 
 
   const app = {
     initMenu: function(){
       const thisApp = this;
-      console.log('thisApp.data:', thisApp.data);
+      //console.log('thisApp.data:', thisApp.data);
 
       for (let productData in thisApp.data.products){
         new Product (productData, thisApp.data.products[productData]);
