@@ -59,7 +59,10 @@
       thisProduct.id = id;
       thisProduct.data = data;
       thisProduct.renderInMenu();
+      thisProduct.getElements();
       thisProduct.initAccordion();
+      thisProduct.initOrderForm();
+      thisProduct.processOrder();
       //console.log('new Product:', thisProduct);
     }
     renderInMenu(){
@@ -76,10 +79,24 @@
       menuContainer.appendChild(thisProduct.element);
     }
 
+    getElements(){
+      const thisProduct = this;
+
+      thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+      thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+
+      //console.log(thisProduct.form);
+      //console.log(thisProduct.formInputs);
+
+    }
+
     initAccordion(){
       const thisProduct = this;
       /* [DONE]find the clickable trigger (the element that should react to clicking) */
-      const trigger = thisProduct.element.querySelector(select.menuProduct.clickable); //stala z elementem clickable
+      const trigger = thisProduct.accordionTrigger; //stala z elementem clickable
       //console.log(trigger); headery...
       /* [DONE]START: click event listener to trigger */
       trigger.addEventListener ('click', function() { //dodajemy event listener do elementów w stalej trigger
@@ -104,10 +121,37 @@
         } // koniec funkcji for iterujacej elementy tablicy
         /* [DONE] END: click event listener to trigger */
       }// koniec funkcji anonimowej
-    ); //zamkniecie nawiasu argumentów listenera
+      ); //zamkniecie nawiasu argumentów listenera
+    }// koniec deklaracji initAccordion()
 
 
+    initOrderForm(){
+      const thisProduct = this;
+      //console.log(thisProduct);
+      thisProduct.form.addEventListener('submit', function(event){
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+
+      for(let input of thisProduct.formInputs){
+        input.addEventListener('change', function(){
+          thisProduct.processOrder();
+        });
+      }
+
+      thisProduct.cartButton.addEventListener('click', function(event){
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
     }
+    //Obliczanie ceny produktu
+    processOrder(){
+      const thisProduct = this;
+      console.log(thisProduct);
+    }
+
+
+
 
   }
 
