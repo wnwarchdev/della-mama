@@ -212,7 +212,14 @@
         /* END LOOP: for each optionId in param.options */
         }
         /* set the contents of thisProduct.priceElem to be the value of variable price */
-        thisProduct.priceElem.innerHTML = price;
+        /*new: multiply price by amount */
+        console.log('price:',price);
+        console.log('multiplier:',thisProduct.amountWidget.value); //pizze liczą sie trzykrotnie ?
+        let multiplier = thisProduct.amountWidget.value;
+        let priceMultiplied = price * multiplier;
+        //price *= thisProduct.amountWidget.value; 
+        thisProduct.priceElem.innerHTML = priceMultiplied;
+
         //console.log(thisProduct.priceElem);
       } //end of loop for each paramId
 
@@ -221,6 +228,9 @@
     initAmountWidget(){
       const thisProduct = this;
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+      thisProduct.amountWidgetElem.addEventListener('custom', function () {  // za product
+        thisProduct.processOrder();
+      });
     }
 
   } //end of Product
@@ -248,8 +258,11 @@
       const newValue = parseInt(value);
       //Todo: validation
       thisWidget.value = newValue;
+      thisWidget.announce();
       thisWidget.input.value = thisWidget.value;
     }
+
+
 
     initActions() {
       const thisWidget = this; //za Product
@@ -269,6 +282,16 @@
       });
     } // end initActions
 
+    announce(){
+      const thisWidget = this;
+      const event = new Event ('custom');
+      thisWidget.element.dispatchEvent(event); //dispatch event?
+      //alert('happened');
+
+
+    }
+
+
   } // end AmountWidget
 
 
@@ -285,12 +308,7 @@
       }
 
 
-      /*
-      const thisApp = this;
-      console.log('thisApp.data:', thisApp.data);
-      const testProduct = new Product();
-      console.log('testProduct', testProduct);
-      */
+
     },
 
     initData: function(){
