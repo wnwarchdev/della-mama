@@ -215,13 +215,13 @@
         /*new: multiply price by amount */
         //console.log('price:',price);
         //console.log('multiplier:',thisProduct.amountWidget.value); //pizze liczą sie trzykrotnie ?
-        let multiplier = thisProduct.amountWidget.value;
-        let priceMultiplied = price * multiplier;
-        //price *= thisProduct.amountWidget.value;
-        thisProduct.priceElem.innerHTML = priceMultiplied;
-
         //console.log(thisProduct.priceElem);
       } //end of loop for each paramId
+
+      let multiplier = thisProduct.amountWidget.value;
+      let priceMultiplied = price * multiplier;
+      //price *= thisProduct.amountWidget.value;
+      thisProduct.priceElem.innerHTML = priceMultiplied;
 
     } //end of process order
 
