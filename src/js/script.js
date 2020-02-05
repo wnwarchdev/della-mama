@@ -20,6 +20,7 @@
       clickable: '.product__header',
       form: '.product__order',
       priceElem: '.product__total-price .price',
+      //priceElem2: '.product__base-price .no-spacing', - tbc
       imageWrapper: '.product__images',
       amountWidget: '.widget-amount',
       cartButton: '[href="#add-to-cart"]',
@@ -103,7 +104,7 @@
         /* [DONE]prevent default action for event */
         event.preventDefault(); //czemu to dodajemy, skoro w headerze nie ma linkow i buttonow?
         /* [DONE]toggle active class on element of thisProduct */
-        thisProduct.element.classList.add('active'); // dodaje klase active/ lub toggle?
+        thisProduct.element.classList.toggle('active'); // dodaje klase active/ lub toggle?
         /* [DONE]find all active products */
         const activeAll = document.querySelectorAll('.active'); //zapisuje wszystkie elementy z klasa active do consta
         //console.log(activeAll);
@@ -146,14 +147,63 @@
     }
     //Obliczanie ceny produktu
     processOrder(){
+      /* save the element in thisProduct.data.params with key paramId as const param */
       const thisProduct = this;
-      console.log(thisProduct);
-    }
+      //console.log('produkt to:', thisProduct.data.name);
+      //console.log('jego paramy to:', thisProduct.data.params);
+      //console.log('ID paramów to:', thisProduct.data.params[1]); //nie działa
+      //console.log(thisProduct);
+
+      /* read all data from the form (using utils.serializeFormToObject) and save it to const formData */
+      const formData = utils.serializeFormToObject(thisProduct.form);
+      //console.log('default select:',formData);
+      //console.log(formData);
+      /* set variable price to equal thisProduct.data.price */
+      let price = thisProduct.data.price; //cena gotowego produktu
+      //console.log('product price:',price);
+      //console.log(price);
+      /* START LOOP: for each paramId in thisProduct.data.params */
+      for (let paramId in thisProduct.data.params) {
+        //console.log(paramId);
+        /* save the element in thisProduct.data.params with key paramId as const param */
+        const param = this.data.params[paramId];
+        //console.log('to id to',param);
+        /* START LOOP: for each optionId in param.options */
+        for (let optionID in param.options) { //czemu nie thisProduct.data.params //ok niewazne...
+          //console.log('opcje tego id to:', optionID);
+          /* save the element in param.options with key optionId as const option */
+          const option = param.options[optionID];
+          //console.log('optionId:',optionID);
+          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionID) > -1; //co to jest >-1?
+          /* START IF: if option is selected and option is not default */
+          if (optionSelected && (option.default==null)) { //==false nie działa //jak zapisac not deafult? !== ?
+            /* add price of option to variable price */
+            price = price + option.price;
+            console.log('cena w gore:',price);
+          /* END IF: if option is selected and option is not default */
+          }
+          /* START ELSE IF: if option is not selected and option is default */
+          else if (optionSelected == false && option.default) {
+            /* deduct price of option from price */
+            price = price - option.price;
+            console.log('cena w dol:',price);
+            /* END ELSE IF: if option is not selected and option is default */
+          }
+        /* END LOOP: for each optionId in param.options */
+        }
+        /* set the contents of thisProduct.priceElem to be the value of variable price */
+        thisProduct.priceElem.innerHTML = price;
+        //console.log(thisProduct.priceElem);
+      } //end of loop for each paramId
+
+    } //end of process order
+
+  } //end of Product
 
 
 
 
-  }
+
 
 
   const app = {
@@ -181,11 +231,11 @@
 
     init: function(){
       const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
+      //console.log('*** App starting ***');
+      //console.log('thisApp:', thisApp);
       console.log('classNames:', classNames);
       console.log('settings:', settings);
-      console.log('templates:', templates);
+      //console.log('templates:', templates);
 
 
       thisApp.initData();

@@ -102,7 +102,7 @@ dataSource.products = {
         options: {
           cucumber: {label: 'Cucumber', price: 1, default: true},
           tomatoes: {label: 'Tomatoes', price: 1, default: true},
-          olives: {label: 'Olives', price: 1, default: true},
+          kalamatas: {label: 'Kalamatas', price: 1, default: true}, //olives
           feta: {label: 'Feta cheese', price: 1},
           cheese: {label: 'Cheese', price: 1},
           herbs: {label: 'Fresh herbs', price: 1, default: true},
