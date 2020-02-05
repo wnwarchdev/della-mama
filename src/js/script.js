@@ -182,14 +182,14 @@
           if (optionSelected && (option.default==null)) { //==false nie działa //jak zapisac not deafult? !== ?
             /* add price of option to variable price */
             price = price + option.price;
-            //console.log('cena w gore:',price);
+            console.log('cena w gore:',price);
           /* END IF: if option is selected and option is not default */
           }
           /* START ELSE IF: if option is not selected and option is default */
           else if (optionSelected == false && option.default) {
             /* deduct price of option from price */
             price = price - option.price;
-            //console.log('cena w dol:',price);
+            console.log('cena w dol:',price);
             /* END ELSE IF: if option is not selected and option is default */
           }
           /* New IF: imageWrapper */

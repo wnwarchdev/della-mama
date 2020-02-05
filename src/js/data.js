@@ -9,6 +9,23 @@ dataSource.products = {
     images: [
       '<img class="active" src="images/doughnut.svg">',
     ],
+    params: {  // bez paramów licznik nie działa
+      topping: {
+        label: 'Topping type',
+        type: 'radios',
+        options: {
+          Cocoa: {label: 'Cocoa', price: 1, default: true},
+          Butter: {label: 'Butter', price: 1},
+        },
+      },
+      cream: {
+        label: 'Heart attack?',
+        type: 'checkboxes',
+        options: {
+          Cream: {label: 'Whipped Cream', price: 1},
+        },
+      },
+    },
   },
   breakfast: {
     class: 'small',
