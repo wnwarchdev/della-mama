@@ -88,6 +88,7 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
 
       //console.log(thisProduct.form);
       //console.log(thisProduct.formInputs);
@@ -104,9 +105,9 @@
         /* [DONE]prevent default action for event */
         event.preventDefault(); //czemu to dodajemy, skoro w headerze nie ma linkow i buttonow?
         /* [DONE]toggle active class on element of thisProduct */
-        thisProduct.element.classList.toggle('active'); // dodaje klase active/ lub toggle?
+        thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive); // dodaje klase active/ lub toggle? //za obiektem...
         /* [DONE]find all active products */
-        const activeAll = document.querySelectorAll('.active'); //zapisuje wszystkie elementy z klasa active do consta
+        const activeAll = document.querySelectorAll('.product.active'); //zapisuje wszystkie elementy z klasa active do consta // .product aby pominac .product-images....
         //console.log(activeAll);
         /* [DONE]START LOOP: for each active product */
         for (let activeSingle of activeAll) { //iteruje po arrayu z wszystkich produktów z klasą active
@@ -149,7 +150,7 @@
     processOrder(){
       /* save the element in thisProduct.data.params with key paramId as const param */
       const thisProduct = this;
-      //console.log('produkt to:', thisProduct.data.name);
+      console.log('produkt to:', thisProduct.data.name);
       //console.log('jego paramy to:', thisProduct.data.params);
       //console.log('ID paramów to:', thisProduct.data.params[1]); //nie działa
       //console.log(thisProduct);
@@ -164,7 +165,7 @@
       //console.log(price);
       /* START LOOP: for each paramId in thisProduct.data.params */
       for (let paramId in thisProduct.data.params) {
-        //console.log(paramId);
+        //console.log('paramId to: ',paramId);
         /* save the element in thisProduct.data.params with key paramId as const param */
         const param = this.data.params[paramId];
         //console.log('to id to',param);
@@ -179,16 +180,33 @@
           if (optionSelected && (option.default==null)) { //==false nie działa //jak zapisac not deafult? !== ?
             /* add price of option to variable price */
             price = price + option.price;
-            console.log('cena w gore:',price);
+            //console.log('cena w gore:',price);
           /* END IF: if option is selected and option is not default */
           }
           /* START ELSE IF: if option is not selected and option is default */
           else if (optionSelected == false && option.default) {
             /* deduct price of option from price */
             price = price - option.price;
-            console.log('cena w dol:',price);
+            //console.log('cena w dol:',price);
             /* END ELSE IF: if option is not selected and option is default */
           }
+          /* New IF: imageWrapper */
+          //New const
+          const productImages = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionID);
+          //console.log(productImages);
+          if (optionSelected == true) { //if selected add class
+            for (let image of productImages) {
+              //console.log(image);
+              image.classList.add(classNames.menuProduct.imageVisible);
+              //console.log('activated');
+            }
+          }
+          else {
+            for (let image of productImages) { //if selected remove class
+              image.classList.remove(classNames.menuProduct.imageVisible);
+              //console.log('DEactivated');
+            }
+          } //END   imageWrapper If
         /* END LOOP: for each optionId in param.options */
         }
         /* set the contents of thisProduct.priceElem to be the value of variable price */
@@ -233,7 +251,7 @@
       const thisApp = this;
       //console.log('*** App starting ***');
       //console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
+      //console.log('classNames:', classNames);
       console.log('settings:', settings);
       //console.log('templates:', templates);
 
