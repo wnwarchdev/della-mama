@@ -81,6 +81,56 @@ dataSource.products = {
       },
     },
   },
+  pizza2: { //nowa pizza
+    name: 'Pizza Ufossa',
+    price: 25,
+    description: 'Earthlings! Our latest seasonal offer truly from the outer space, combines traditional italian base with exotic toppings from beyond event horizon. It is guaranteed this will be last meal of your life... on earth!',
+    images: [
+      '<img class="active" src="images/pizza/crust.svg">',
+      '<img class="sauce-oozing_slime" src="images/pizza/tomato-sauce2.svg">', //removed active from svgs exc for crust
+      '<img class="sauce-pink_goo" src="images/pizza/sour-cream2.svg">',
+      '<img class="toppings-off_world_ham" src="images/pizza/salami2.svg">',
+      '<img class="toppings-osmium" src="images/pizza/olives2.svg">',
+      '<img class="toppings-jupiterPeppers" src="images/pizza/red-peppers2.svg">',
+      '<img class="toppings-antaresPeppers" src="images/pizza/green-peppers2.svg">',
+      '<img class="toppings-atomic_mushrooms" src="images/pizza/mushrooms2.svg">',
+      '<img class="toppings-alien_delight" src="images/pizza/basil2.svg">',
+    ],
+    params: {
+      sauce: {
+        label: 'Sauce',
+        type: 'radios',
+        options: {
+          oozing_slime: {label: 'Oozing slime', price: 0, default: true},
+          pink_goo: {label: 'Pink Goo', price: 4},
+        },
+      },
+      toppings: {
+        label: 'Toppings',
+        type: 'checkboxes',
+        options: {
+          osmium: {label: 'Osmium Rounds', price: 3, default: true},
+          jupiterPeppers: {label: 'Jupiter peppers', price: 3, default: true},
+          antaresPeppers: {label: 'Antares peppers', price: 3, default: true},
+          atomic_mushrooms: {label: 'Atomic Mushrooms', price: 3, default: true},
+          alien_delight: {label: 'Alien Delight', price: 3, default: true},
+          off_world_ham: {label: 'Off-World Ham', price: 5},
+        },
+      },
+      crust: {
+        label: 'pizza crust',
+        type: 'select',
+        options: {
+          standard: {label: 'standard', price: 0, default: true},
+          thin: {label: 'thin', price: 2},
+          thick: {label: 'thick', price: 2},
+          cheese: {label: 'cheese in edges', price: 5},
+          wholewheat: {label: 'wholewheat', price: 3},
+          gluten: {label: 'with extra gluten', price: 0},
+        },
+      },
+    },
+  },
   salad: {
     name: 'Nonno Alberto\'s Salad',
     price: 9,
