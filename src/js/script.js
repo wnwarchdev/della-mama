@@ -43,7 +43,7 @@
 
   const settings = {
     amountWidget: {
-      defaultValue: 1,
+      defaultValue: 1, //ok działa!
       defaultMin: 1,
       defaultMax: 9,
     }
@@ -213,11 +213,11 @@
         }
         /* set the contents of thisProduct.priceElem to be the value of variable price */
         /*new: multiply price by amount */
-        console.log('price:',price);
-        console.log('multiplier:',thisProduct.amountWidget.value); //pizze liczą sie trzykrotnie ?
+        //console.log('price:',price);
+        //console.log('multiplier:',thisProduct.amountWidget.value); //pizze liczą sie trzykrotnie ?
         let multiplier = thisProduct.amountWidget.value;
         let priceMultiplied = price * multiplier;
-        //price *= thisProduct.amountWidget.value; 
+        //price *= thisProduct.amountWidget.value;
         thisProduct.priceElem.innerHTML = priceMultiplied;
 
         //console.log(thisProduct.priceElem);
@@ -239,6 +239,7 @@
     constructor(element) {
       const thisWidget = this;
       thisWidget.getElements(element);
+      thisWidget.value = settings.amountWidget.defaultValue;
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
       //console.log('Amount Widget:' , thisWidget);
@@ -256,9 +257,15 @@
 
       const thisWidget = this;
       const newValue = parseInt(value);
-      //Todo: validation
-      thisWidget.value = newValue;
-      thisWidget.announce();
+      // [DONE] validation
+      console.log(value);
+      if ( (newValue >= settings.amountWidget.defaultMin) && (newValue <= settings.amountWidget.defaultMax) && (newValue !== thisWidget.value ) ) { //newValue !== value || newValue >= settings.amountWidget.defaultMin || newValue <= settings.amountWidget.defaultMax
+        thisWidget.value = newValue;
+        thisWidget.announce();
+      }
+
+
+
       thisWidget.input.value = thisWidget.value;
     }
 
@@ -294,10 +301,6 @@
 
   } // end AmountWidget
 
-
-
-
-
   const app = {
     initMenu: function(){
       const thisApp = this;
@@ -306,9 +309,6 @@
       for (let productData in thisApp.data.products){
         new Product (productData, thisApp.data.products[productData]);
       }
-
-
-
     },
 
     initData: function(){
