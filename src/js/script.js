@@ -172,6 +172,7 @@
       thisProduct.cartButton.addEventListener('click', function(event){
         event.preventDefault();
         thisProduct.processOrder();
+        thisProduct.addToCart();
       });
     }
     //Obliczanie ceny produktu
@@ -187,6 +188,8 @@
       const formData = utils.serializeFormToObject(thisProduct.form);
       //console.log('default select:',formData);
       //console.log(formData);
+
+      thisProduct.params = {};
       /* set variable price to equal thisProduct.data.price */
       let price = thisProduct.data.price; //cena gotowego produktu
       //console.log('product price:',price);
@@ -223,6 +226,16 @@
           const productImages = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionID);
           //console.log(productImages);
           if (optionSelected == true) { //if selected add class
+
+            if(!thisProduct.params[paramId]){ //
+              thisProduct.params[paramId] = {
+                label: param.label,
+                options: {},
+              };
+              thisProduct.params[paramId].options[optionID] = option.label;
+
+            }
+
             for (let image of productImages) {
               //console.log(image);
               image.classList.add(classNames.menuProduct.imageVisible);
@@ -246,8 +259,17 @@
 
       //let multiplier = thisProduct.amountWidget.value;
       //let priceMultiplied = price * multiplier;
-      price *= thisProduct.amountWidget.value;
-      thisProduct.priceElem.innerHTML = price;
+      //price *= thisProduct.amountWidget.value;
+      //thisProduct.priceElem.innerHTML = price;
+
+      /* multiply price by amount */
+      thisProduct.priceSingle = price;
+      thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
+
+      /* set the contents of thisProduct.priceElem to be the value of variable price */
+      thisProduct.priceElem.innerHTML = thisProduct.price;
+      console.log('paramy:',thisProduct.params);
+
 
     } //end of process order
 
@@ -257,6 +279,17 @@
       thisProduct.amountWidgetElem.addEventListener('custom', function () {  // za product
         thisProduct.processOrder();
       });
+    }
+
+    addToCart(){
+      const thisProduct = this;
+
+      thisProduct.name = thisProduct.data.name; //nazwa produktu
+      //console.log(thisProduct.name);
+      thisProduct.amount = thisProduct.amountWidget.value; //ilość produktu
+      //console.log(thisProduct.amount);
+      app.cart.add(thisProduct);
+
     }
 
   } //end of Product
@@ -337,6 +370,7 @@
       thisCart.dom = {};
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList); //za toggleTrigger
     }
     initActions(){
       const thisCart = this;
@@ -344,9 +378,18 @@
       thisCart.dom.toggleTrigger.addEventListener('click', function () {
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
-
     }
-  }
+    add(menuProduct){
+      const thisCart = this;
+      const generatedHTML = templates.cartProduct(menuProduct); //nowododany szablon do stalej
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML); //za renderInMenu
+      thisCart.dom.productList.appendChild(generatedDOM); //za renderInMenu
+      //console.log('adding product:', menuProduct);
+    }
+
+
+
+  } // end Cart
 
   const app = {
     initMenu: function(){
