@@ -29,6 +29,7 @@ class HourPicker extends BaseWidget {
     thisWidget.dom.input.addEventListener('input', function(){ //czemu nie 'change'?
       thisWidget.value = thisWidget.parseValue(thisWidget.dom.input.value);//thisWidget.dom.input.value;
       console.log('output:',thisWidget.parseValue(thisWidget.dom.input.value));
+      //thisWidget.renderValue();
       //console.log('output:',thisWidget.value);
       //console.log('val:',thisWidget.value);
     });
