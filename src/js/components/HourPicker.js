@@ -28,7 +28,7 @@ class HourPicker extends BaseWidget {
 
     thisWidget.dom.input.addEventListener('input', function(){ //czemu nie 'change'?
       thisWidget.value = thisWidget.parseValue(thisWidget.dom.input.value);//thisWidget.dom.input.value;
-      console.log('output:',thisWidget.parseValue(thisWidget.dom.input.value));
+      //console.log('output:',thisWidget.parseValue(thisWidget.dom.input.value));
       //thisWidget.renderValue();
       //console.log('output:',thisWidget.value);
       //console.log('val:',thisWidget.value);
@@ -53,8 +53,8 @@ class HourPicker extends BaseWidget {
     const thisWidget = this;
     //console.log(thisWidget.dom.output);
     //console.log(thisWidget.value);
-    thisWidget.dom.output.innerHTML = utils.numberToHour(thisWidget.value);//;
-    console.log(thisWidget.dom.output.innerHTML);
+    thisWidget.dom.output.innerHTML = thisWidget.parseValue(thisWidget.dom.input.value);//; //tutaj licho siedziało...
+    //console.log(thisWidget.dom.output.innerHTML);
     //console.log(thisWidget.value);
   } //end renderValue
 
