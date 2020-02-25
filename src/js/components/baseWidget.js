@@ -17,7 +17,7 @@ class BaseWidget {
 
   set value(value) {
     const thisWidget = this;
-    const newValue = parseInt(value);
+    const newValue = thisWidget.parseValue(value);
     // [DONE] validation
     //console.log(value);
     if ( newValue != thisWidget.correctValue && thisWidget.isValid(newValue))  { //newValue !== value || newValue >= settings.amountWidget.defaultMin || newValue <= settings.amountWidget.defaultMax

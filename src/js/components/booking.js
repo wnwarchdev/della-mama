@@ -93,7 +93,7 @@ class Booking{
     for (let item of eventsRepeat){
       if(item.repeat == 'daily'){
         for(let loopDate = minDate; loopDate <= maxDate; loopDate = utils.addDays(loopDate,1)){
-          thisBooking.makeBooked( utils.dateToStr(loopDate),  item.date, item.hour, item.duration, item.table);
+          thisBooking.makeBooked( utils.dateToStr(loopDate), item.hour, item.duration, item.table);
         }
       }
     }
@@ -107,6 +107,7 @@ class Booking{
       thisBooking.booked[date] = {};
     }
     const startHour = utils.hourToNumber(hour);
+    console.log('startHour',startHour);
 
 
     for(let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5){
@@ -122,7 +123,8 @@ class Booking{
     const thisBooking = this;
 
     thisBooking.date = thisBooking.datePicker.value;
-    thisBooking.hour = utils.hourToNumber(thisBooking.datePicker.value);
+    thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
+    console.log( 'updateDOM', typeof(thisBooking.hour));
 
     let allAvailable = false;
     //console.log(allAvailable);
