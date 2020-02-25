@@ -67,9 +67,9 @@ class Booking{
         ]);
       })
       .then(function ([bookings, eventsCurrent, eventsRepeat]){
-        // console.log(bookings);
-        // console.log(eventsCurrent);
-        // console.log(eventsRepeat);
+        console.log(bookings);
+        console.log(eventsCurrent);
+        console.log(eventsRepeat);
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
       });
   } //end getData
@@ -98,6 +98,7 @@ class Booking{
       }
     }
     thisBooking.updateDOM();
+    console.log(thisBooking.booked);
   } //end parseData
 
   makeBooked (date, hour, duration, table){
@@ -141,6 +142,7 @@ class Booking{
     for(let table of thisBooking.dom.tables){
       let tableId = table.getAttribute(settings.booking.tableIdAttribute);
       if(!isNaN(tableId)){
+        //console.log(tableId);
         tableId = parseInt(tableId);
         //console.log('parsed');
       }
@@ -148,7 +150,7 @@ class Booking{
       if(
         !allAvailable
         &&
-        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) > -1
+        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) //co tu siedziało
       ){
         table.classList.add(classNames.booking.tableBooked);
         console.log('added');
