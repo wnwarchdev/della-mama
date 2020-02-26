@@ -124,8 +124,10 @@ class Booking{
     const thisBooking = this;
 
     thisBooking.date = thisBooking.datePicker.value;
+    console.log('ddoomm', thisBooking.datePicker.value);
+    console.log('ddoomm', typeof(thisBooking.datePicker.value));
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
-    console.log( 'updateDOM', typeof(thisBooking.hour));
+    //console.log( 'updateDOM', typeof(thisBooking.hour));
 
     let allAvailable = false;
     //console.log(allAvailable);
@@ -194,7 +196,9 @@ class Booking{
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
     thisBooking.dom.wrapper.addEventListener('custom', function(){ //custom zamiast updated...
+
       thisBooking.updateDOM();
+
       console.log('updated by listener');
     });
   } //end initWidgets
