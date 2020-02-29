@@ -383,41 +383,6 @@
     }
   ],
   "booking": [
-    {
-      "id": 1,
-      "date": "2020-02-27",
-      "hour": "22:30",
-      "table": 1,
-      "duration": 4,
-      "ppl": 3,
-      "starters": []
-    },
-    {
-      "id": 2,
-      "date": "2020-02-27",
-      "hour": "20:30",
-      "table": 1,
-      "duration": 4,
-      "ppl": 3,
-      "starters": []
-    },
-    {
-      "id": 3,
-      "date": "2020-02-28",
-      "hour": "19:30",
-      "table": 3,
-      "duration": 1,
-      "ppl": 3,
-      "starters": []
-    },
-    {
-      "id": 4,
-      "date": "2020-02-28",
-      "hour": "20:30",
-      "table": 2,
-      "duration": 1,
-      "ppl": 3,
-      "starters": []
-    }
+  
   ]
 }
