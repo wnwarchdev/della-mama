@@ -130,30 +130,18 @@ class Booking{
 
   pickTable(){
     const thisBooking = this;
-    thisBooking.selectedTable = 0;
     for (let table of thisBooking.dom.tables) {
-
-      if (!table.classList.contains(classNames.booking.tableBooked)){
-        table.addEventListener('click', function () {
-
-          thisBooking.clearTables(); // bez tego moznaby bookowac kilka stolikow na raz...
-          let tableNum = table.innerHTML.slice(6, 7);
-          thisBooking.selectedTable = parseInt(tableNum);
-          //console.log(thisBooking.selectedTable);
-          table.classList.toggle('table-selected');
-
-          //console.log('toggle triggered');
-          //return thisBooking.selectedTable;
-
-        });
-        //console.log('after return',thisBooking.selectedTable);
-      }
+      table.addEventListener('click', function () {
+        thisBooking.clearTables(); // bez tego moznaby bookowac kilka stolikow na raz...
+        let tableNum = table.innerHTML.slice(6, 7);
+        thisBooking.selectedTable = parseInt(tableNum);
+        table.classList.toggle('table-selected');
+      });
     }
   }
 
   clearTables(){
     const thisBooking = this;
-    thisBooking.selectedTable = 0;
     for (let table of thisBooking.dom.tables) {
       table.classList.remove('table-selected');
     }
