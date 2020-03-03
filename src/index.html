@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="vendor/range-slider.min.css">
+  <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css"/>
 </head>
 <body>
 
@@ -22,6 +23,7 @@
         </div>
 
         <div class="main-nav">
+          <a href="#home">Home</a>
           <a href="#order">Order</a>
           <a href="#booking">Booking</a>
         </div>
@@ -62,6 +64,81 @@
       </div>
     </div>
   </header>
+
+  <div id="pages">
+
+    <section id="home" class="homepage">
+
+      <div class="links-container">
+        <div class="link-image-wrapper">
+          <img class="link-image" src="./images/assets/pizza-1.jpg"/>
+          <a href="#/order" class="link-header">order online</a> <!-- link TBC @ js-->
+          <p class="anim-text">Delicious food delivered to your door</p>
+        </div>
+        <div class="link-image-wrapper">
+          <img class="link-image" src="./images/assets/pizza-2.jpg"/>
+          <a href="#/booking" class="link-header">book table</a> <!-- link TBC @ js-->
+          <p class="anim-text">Enjoy Italo-Pan-Galactic atmosphere</p>
+        </div>
+      </div>
+
+      <div class="opening-container">
+        <h3>opening hours:</h3>
+        <p> TUE - SUN, 12PM - 12AM</p>
+      </div>
+
+      <div class="carousel"> <!-- carousel TBC -->
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+
+      <div class="gallery-container">
+
+        <div class="gallery-row">
+          <div class="gallery-image-wrapper">
+            <img class="gallery-image" src="./images/assets/pizza-4.jpg"/>
+          </div>
+          <div class="gallery-image-wrapper">
+            <img class="gallery-image" src="./images/assets/pizza-5.jpg"/>
+          </div>
+          <div class="gallery-image-wrapper">
+            <img class="gallery-image" src="./images/assets/pizza-6.jpg"/>
+          </div>
+        </div>
+
+        <div class="gallery-row">
+          <div class="gallery-image-wrapper">
+            <img class="gallery-image" src="./images/assets/pizza-7.jpg"/>
+          </div>
+          <div class="gallery-image-wrapper">
+            <img class="gallery-image" src="./images/assets/pizza-8.jpg"/>
+          </div>
+          <div class="gallery-image-wrapper">
+            <img class="gallery-image" src="./images/assets/pizza-9.jpg"/>
+          </div>
+        </div>
+      </div>
+
+
+      <footer>
+        <a href="#">View more on Instagram</a>
+      </footer>
+
+  </section>
+
+
+  <section id="order">
+    <div id="product-list" class="product-list container"></div>
+  </section>
+  <section id="booking">
+    <div class="booking-wrapper container"></div>
+  </section>
+</div>
+
 
   <div id="pages">
   <section id="order">
@@ -250,6 +327,10 @@
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="vendor/range-slider.min.js"></script>
   <script src="js/app.js" type="module"></script>
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="slick/slick.min.js"></script>
 
 
 </body>

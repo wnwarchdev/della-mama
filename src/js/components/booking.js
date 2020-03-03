@@ -50,7 +50,6 @@ class Booking{
                                       + '?' + params.eventsCurrent.join('&'),
       eventsRepeat:   settings.db.url + '/' + settings.db.event
                                       + '?' + params.eventsRepeat.join('&'),
-
     };
 
     //console.log('get data urls:' , urls);
@@ -130,11 +129,13 @@ class Booking{
 
   pickTable(){
     const thisBooking = this;
+    thisBooking.selectedTable = 0;
     for (let table of thisBooking.dom.tables) {
       table.addEventListener('click', function () {
-        thisBooking.clearTables(); // bez tego moznaby bookowac kilka stolikow na raz...
+
         let tableNum = table.innerHTML.slice(6, 7);
         thisBooking.selectedTable = parseInt(tableNum);
+        thisBooking.clearTables(); // bez tego moznaby bookowac kilka stolikow na raz...
         table.classList.toggle('table-selected');
       });
     }

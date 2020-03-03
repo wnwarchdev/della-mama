@@ -1,0 +1,135 @@
+
+// main
+
+.homepage {
+  margin: 0 auto;
+  max-width: 700px;
+  background: $color-light;
+  padding: 70px 50px;
+}
+
+// links
+
+.links-container {
+  border-radius: $radius;
+  display: flex;
+  height: 120px;
+  width: 100%;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.link-image-wrapper {
+  width: 295px;
+  text-align: center;
+  position: relative;
+}
+
+.link-image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: $radius;
+}
+
+.link-header {
+  font-size: 26px;
+  font-family: $font-header;
+  font-weight: $font-normal;
+  color: $color-light;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all .1s ease-in;
+  width: 300px;
+}
+
+.anim-text {
+  position: absolute;
+  font-size: $base-size;
+  font-family: $font-text;
+  font-weight: $font-light;
+  color: $color-light;
+  opacity: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all .1s ease-in;
+  top: 50%;
+  width: 300px;
+}
+
+.link-image-wrapper:hover a {
+  top: 30%;
+}
+
+.link-image-wrapper:hover .anim-text {
+  opacity: 1;
+  top: 50%;
+}
+
+
+// opening
+
+.opening-container {
+  border-radius: $radius;
+  background-color: $color-main;
+  text-align: center;
+  margin-top: 5px;
+  width: 100%;
+  height: 120px;
+}
+
+.opening-container h3{
+  margin: 0 auto;
+  font-size: 26px;
+  font-family: $font-header;
+  font-weight: $font-normal;
+  color: $color-light;
+  padding-top: 20px;
+  text-transform: uppercase;
+}
+
+.opening-container p {
+  font-family: $font-text;
+  font-weight: $font-normal;
+  color: $color-light;
+  margin-top: 0;
+}
+
+
+// gallery
+
+.gallery-container {
+  width: 100%;
+}
+
+.gallery-row {
+  display: flex;
+  flex: 0 30%;
+  height: 200px;
+}
+
+.gallery-image-wrapper {
+  margin: 5px;
+}
+
+.gallery-image {
+  object-fit: cover;
+  border-radius: $radius;
+  height: 190px;
+  width: 190px;
+}
+
+
+// footer
+
+footer a {
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 5px;
+  color: $color-main;
+}
