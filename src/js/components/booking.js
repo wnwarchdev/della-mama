@@ -315,15 +315,16 @@ class Booking{
         return response.json();
       }).then(function (parsedResponse) {
         console.log('parsedResponse: ', parsedResponse);
+
+        thisBooking.clearTables();
+        thisBooking.updateDOM();
+        thisBooking.clearInputs();
       });
     console.log('order sent');
 
     thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
     console.log('makeBooking payload:',payload.date, payload.hour, payload.duration, payload.table);
 
-    thisBooking.clearTables();
-    thisBooking.updateDOM();
-    thisBooking.clearInputs();
 
 
 
