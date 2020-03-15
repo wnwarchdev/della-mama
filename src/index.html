@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="pinterest" content="nopin" />
   <title>Pizzeria</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="vendor/range-slider.min.css">
-  <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 </head>
 <body>
 
@@ -88,38 +89,92 @@
       </div>
 
       <div class="carousel"> <!-- carousel TBC -->
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+
+        <div class="carousel-image-wrapper">
+          <img class="carousel-image" src="./images/assets/pizza-3.jpg" alt="at the restaurant" />
+        </div>
+
+        <div class="carousel-quote-wrapper js-flickity" data-flickity='{ "cellAlign": "left", "contain": true, "prevNextButtons": false, "pageDots": false, "autoPlay": 1500, "wrapAround": true }'>
+
+          <div class="carousel-cell">
+            <p class="carousel-paragraph-title">amazing service!</p>
+            <p class="carousel-paragraph-quote">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam beatae id minima voluptatum sed ex numquam eos animi aliquid iste.</p>
+            <p class="carousel-paragraph-author">Margaret Osborne</p>
+          </div>
+
+          <div class="carousel-cell">
+            <p class="carousel-paragraph-title">Food out of this world!</p>
+            <p class="carousel-paragraph-quote">Voluptatum sed ex numquam eos animi aliquid iste. Odit, possimus eos id similique sunt. Ad, dolor, provident. Fugiat.</p>
+            <p class="carousel-paragraph-author">Joan Osborne</p>
+          </div>
+
+          <div class="carousel-cell">
+            <p class="carousel-paragraph-title">We come in peace!</p>
+            <p class="carousel-paragraph-quote">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.</p>
+            <p class="carousel-paragraph-author">Ozzy Osborne</p>
+          </div>
+
+        </div>
+
       </div>
+
+
 
       <div class="gallery-container">
 
         <div class="gallery-row">
+
           <div class="gallery-image-wrapper">
-            <img class="gallery-image" src="./images/assets/pizza-4.jpg"/>
+            <img class="gallery-image" src="./images/assets/pizza-4.jpg" alt="apetizers"/>
+            <div class="icons">
+              <i class="fas fa-heart"></i>
+              <i class="fas fa-share-alt"></i>
+            </div>
           </div>
+
           <div class="gallery-image-wrapper">
-            <img class="gallery-image" src="./images/assets/pizza-5.jpg"/>
+            <img class="gallery-image" src="./images/assets/pizza-5.jpg" alt="salad"/>
+            <div class="icons">
+              <i class="fas fa-heart"></i>
+              <i class="fas fa-share-alt"></i>
+            </div>
           </div>
+
           <div class="gallery-image-wrapper">
-            <img class="gallery-image" src="./images/assets/pizza-6.jpg"/>
+            <img class="gallery-image" src="./images/assets/pizza-6.jpg" alt="pizza"/>
+            <div class="icons">
+              <i class="fas fa-heart"></i>
+              <i class="fas fa-share-alt"></i>
+            </div>
           </div>
         </div>
 
         <div class="gallery-row">
+
           <div class="gallery-image-wrapper">
-            <img class="gallery-image" src="./images/assets/pizza-7.jpg"/>
+            <img class="gallery-image" src="./images/assets/pizza-7.jpg" alt="open"/>
+            <div class="icons">
+              <i class="fas fa-heart"></i>
+              <i class="fas fa-share-alt"></i>
+            </div>
           </div>
+
           <div class="gallery-image-wrapper">
-            <img class="gallery-image" src="./images/assets/pizza-8.jpg"/>
+            <img class="gallery-image" src="./images/assets/pizza-8.jpg" alt="flour"/>
+            <div class="icons">
+              <i class="fas fa-heart"></i>
+              <i class="fas fa-share-alt"></i>
+            </div>
           </div>
+
           <div class="gallery-image-wrapper">
-            <img class="gallery-image" src="./images/assets/pizza-9.jpg"/>
+            <img class="gallery-image" src="./images/assets/pizza-9.jpg" alt="doors open"/>
+            <div class="icons">
+              <i class="fas fa-heart"></i>
+              <i class="fas fa-share-alt"></i>
+            </div>
           </div>
+
         </div>
       </div>
 
@@ -330,7 +385,7 @@
 
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <script type="text/javascript" src="slick/slick.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
 
 </body>
