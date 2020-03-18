@@ -69,7 +69,7 @@ class Booking{
         ]);
       })
       .then(function ([bookings, eventsCurrent, eventsRepeat]){
-        console.log(bookings);
+        //console.log(bookings);
         //console.log(eventsCurrent);
         //console.log(eventsRepeat);
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
@@ -108,7 +108,7 @@ class Booking{
 
   makeBooked (date, hour, duration, table){
     const thisBooking = this;
-    console.log('makeBooked');
+    //console.log('makeBooked');
 
     if(typeof thisBooking.booked[date] == 'undefined'){
       thisBooking.booked[date] = {};
@@ -157,10 +157,84 @@ class Booking{
     //console.log('all clear!');
   }
 
+  sliderColor() {
+    const thisBooking = this;
+
+    //get rangerSlider
+    thisBooking.dom.form.slider = thisBooking.dom.form.querySelector('.rangeSlider');
+
+
+    //calculate number of booking slots and save to array
+    const firstSlot = 12;
+    const lastSlot = 23.5;
+
+    let slotCounter = firstSlot;
+    const slots = [];
+
+    while (slotCounter <= lastSlot) { //musialem zmienic 24 na 23.5 w indeksie...
+      slots.push(slotCounter);
+      //console.log('slot:',slotCounter);
+      slotCounter = slotCounter + .5;
+    }
+
+
+    //calculate number of booked tables in all booking slots
+
+    const bookedTables = [];
+    for (let slot of slots) {
+      //console.log(thisBooking.booked[thisBooking.date][slot]); //OMG...
+      if (thisBooking.booked[thisBooking.date][slot] != undefined) {
+        bookedTables.push(thisBooking.booked[thisBooking.date][slot].length);
+      } else {
+        bookedTables.push(0);
+      }
+    }
+
+    // create array of colors corresponding to booked tables
+
+    const cellColor = [];
+
+    for (let booked of bookedTables) {
+      if (booked == 3) {
+        cellColor.push('red');
+      } else if (booked == 2) {
+        cellColor.push('orange');
+      } else if (booked == 1) {
+        cellColor.push('darkgreen');
+      } else {
+        cellColor.push('green');
+      }
+    }
+
+
+    // create array of colors and lengths
+
+    const cellArray = [];
+
+    let cellLength = 100/slots.length;
+
+    let cellStart = 0;
+    let cellEnd = 100/slots.length;
+
+    for (let cell of cellColor) {
+      cellArray.push(cell + ' ' + cellStart + '%' + ' ' + cellEnd + '%');
+      cellStart = cellStart + cellLength;
+      cellEnd = cellEnd + cellLength;
+    }
+
+
+    // create gradient
+    const gradientValue = cellArray.join(', ');
+    //console.log(gradientValue);
+    thisBooking.dom.form.slider.style.background = 'linear-gradient(to right,' + gradientValue + ')';
+
+  }
+
+
 
   updateDOM(){
     const thisBooking = this;
-    console.log('dom updated');
+    //console.log('dom updated');
     thisBooking.date = thisBooking.datePicker.value;
     //console.log('ddoomm', thisBooking.datePicker.value);
     //console.log('ddoomm', typeof(thisBooking.datePicker.value));
@@ -199,6 +273,7 @@ class Booking{
         //console.log('removed');
       }
     }
+    thisBooking.sliderColor();
   }// end updateDOM
 
 
@@ -266,7 +341,7 @@ class Booking{
     thisBooking.dom.form.addEventListener('submit', function (event) {
       event.preventDefault();
       if (thisBooking.selectedTable !== 0) {
-        console.log(thisBooking.selectedTable);
+        //console.log(thisBooking.selectedTable);
         thisBooking.sendReservation();
       } else {
         alert('Pick any table to proceed');
@@ -300,7 +375,7 @@ class Booking{
       }
     }
 
-    console.log('sendReservation payload:',payload);
+    //console.log('sendReservation payload:',payload);
 
     const options = {
       method: 'POST',
@@ -320,7 +395,7 @@ class Booking{
         thisBooking.updateDOM();
         thisBooking.clearInputs();
       });
-    console.log('order sent');
+    //console.log('order sent');
 
     thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
     console.log('makeBooking payload:',payload.date, payload.hour, payload.duration, payload.table);
