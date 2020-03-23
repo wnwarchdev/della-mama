@@ -1,6 +1,6 @@
 import {settings, select, classNames} from './settings.js';
-import Product from './components/Product.js';
-import Cart from './components/Cart.js';
+import Product from './components/product.js';
+import Cart from './components/cart.js';
 import Booking from './components/booking.js';
 
 
